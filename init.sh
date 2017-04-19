@@ -243,7 +243,7 @@ do
 
     clr_green "Press any key to continue once its installed"
 
-    read -p "<>" -n1 -s
+    read -p "<>" -n1 -s < /dev/tty
     which VBoxManage > /dev/null
 done
 
