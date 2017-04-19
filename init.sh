@@ -227,3 +227,22 @@ do
 done
 
 clr_green "Bundler Installed"
+
+
+#### Virtualbox
+clr_magenta "> Checking for Virtualbox."
+
+which VBoxManage > /dev/null
+
+while [ $? -eq 1 ]
+do
+    clr_bold clr_red "Virtualbox is not installed!!"
+    clr_bold clr_red "Attempting to install Virtualbox"
+
+    open "http://download.virtualbox.org/virtualbox/5.0.38/VirtualBox-5.0.38-114633-OSX.dmg"
+    pause "Once installed press enter to continue"
+    which VBoxManage > /dev/null
+done
+
+clr_green "Virtualbox Installed"
+
