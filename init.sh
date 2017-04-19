@@ -247,16 +247,5 @@ do
     which VBoxManage > /dev/null
 done
 
-while read line ; do
-  while : ; do
-
-
-    read -n 1 key <&1
-    if [[ $key = c ]] ; then
-      break
-    fi
-  done
-done < $1
-
 clr_green "Virtualbox Installed"
 
