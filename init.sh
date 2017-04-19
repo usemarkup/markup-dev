@@ -240,7 +240,8 @@ do
     clr_bold clr_red "Attempting to install Virtualbox"
 
     open "http://download.virtualbox.org/virtualbox/5.0.38/VirtualBox-5.0.38-114633-OSX.dmg"
-    pause "Once installed press enter to continue"
+    
+    read -p "Press enter to continue"
     which VBoxManage > /dev/null
 done
 
