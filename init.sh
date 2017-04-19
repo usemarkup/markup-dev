@@ -240,10 +240,23 @@ do
     clr_bold clr_red "Attempting to install Virtualbox"
 
     open "http://download.virtualbox.org/virtualbox/5.0.38/VirtualBox-5.0.38-114633-OSX.dmg"
-    
-    read -p "Press enter to continue"
+
+    clr_green "Press any key to continue once its installed"
+
+    read -p "<>" -n1 -s
     which VBoxManage > /dev/null
 done
+
+while read line ; do
+  while : ; do
+
+
+    read -n 1 key <&1
+    if [[ $key = c ]] ; then
+      break
+    fi
+  done
+done < $1
 
 clr_green "Virtualbox Installed"
 
