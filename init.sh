@@ -196,6 +196,21 @@ done
 
 clr_green "Brew Installed"
 
+clr_magenta "> Checking for git (from Brew)."
+
+which git | grep "/usr/local/bin" > /dev/null
+
+while [ $? -eq 1 ]
+do
+    clr_bold clr_red "Git from Brew is not installed!!"
+    clr_bold clr_red "Attempting to install Git from Brew"
+
+    brew install git
+    which git | grep "/usr/local/bin" > /dev/null
+done
+
+clr_green "Git Installed"
+
 #### Ruby
 clr_magenta "> Checking for Ruby >= 2.2.0"
 
