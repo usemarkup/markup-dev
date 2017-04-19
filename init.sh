@@ -197,7 +197,7 @@ clr_green "Brew Installed"
 #### Ruby
 clr_magenta "> Checking for Ruby >= 2.2.0"
 
-ruby -v | grep -v '1\.9|2\.0|2\.1|' > /dev/null
+ruby -v | grep -v "2\.[0-1]" > /dev/null
 
 while [ $? -eq 1 ]
 do
@@ -205,7 +205,7 @@ do
     clr_bold clr_red "Attempting to install Ruby >2.2 from Brew"
 
     brew install ruby
-    ruby -v | grep -v '1\.9|2\.0|2\.1|' > /dev/null
+    ruby -v | grep -v "2\.[0-1]" > /dev/null
 done
 
 clr_green "Ruby >= 2.2 Installed"
