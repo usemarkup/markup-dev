@@ -182,6 +182,8 @@ function clr_dump
 # Requirements Check!
 ######################################
 
+export PATH="/usr/local/bin/:$PATH"
+
 clr_magenta "> Checking for Brew."
 
 while [ ! -d "/usr/local/bin/" ]
