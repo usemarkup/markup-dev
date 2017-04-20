@@ -211,6 +211,23 @@ done
 
 clr_green "Git Installed"
 
+clr_magenta "> Checking for PHP 7.1"
+
+php -v | grep "7\.1\." > /dev/null
+
+while [ $? -eq 1 ]
+do
+    clr_bold clr_red "PHP 7.1 not found"
+    clr_bold clr_red "Attempting to install PHP 7.1"
+
+    brew install homebrew/php/php71 homebrew/php/php71-intl homebrew/php/php71-mcrypt
+    brew link homebrew/php/php71
+
+    php -v | grep "7\.1\." > /dev/null
+done
+
+clr_green "PHP Installed"
+
 #### Ruby
 clr_magenta "> Checking for Ruby >= 2.2.0"
 
@@ -263,4 +280,24 @@ do
 done
 
 clr_green "Virtualbox Installed"
+
+#### Vagrant
+clr_magenta "> Checking for Vagrant."
+
+which vagrant > /dev/null
+
+while [ $? -eq 1 ]
+do
+    clr_bold clr_red "Vagrant is not installed!!"
+    clr_bold clr_red "Attempting to install Vagrant"
+
+    open "https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1.dmg"
+
+    clr_green "Press any key to continue once its installed"
+
+    read -p "<>" -n1 -s < /dev/tty
+    which vagrant > /dev/null
+done
+
+clr_green "vagrant Installed"
 
