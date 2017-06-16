@@ -229,20 +229,20 @@ done
 clr_green "PHP Installed"
 
 #### Ruby
-clr_magenta "> Checking for Ruby >= 2.2.0"
+clr_magenta "> Checking for Ruby >= 2.3.0"
 
-ruby -v | grep -v "2\.[0-1]" > /dev/null
+ruby -v | grep -v "2\.[0-2]" > /dev/null
 
 while [ $? -eq 1 ]
 do
-    clr_bold clr_red "Ruby >= 2.2 is not installed!!"
-    clr_bold clr_red "Attempting to install Ruby >2.2 from Brew"
+    clr_bold clr_red "Ruby >= 2.3 is not installed!!"
+    clr_bold clr_red "Attempting to install Ruby >2.3 from Brew"
 
     brew install ruby
-    ruby -v | grep -v "2\.[0-1]" > /dev/null
+    ruby -v | grep -v "2\.[0-2]" > /dev/null
 done
 
-clr_green "Ruby >= 2.2 Installed"
+clr_green "Ruby >= 2.3 Installed"
 
 #### Bundler
 clr_magenta "> Checking for Bundler."
