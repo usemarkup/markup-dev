@@ -271,7 +271,7 @@ do
     clr_bold clr_red "Virtualbox is not installed!!"
     clr_bold clr_red "Attempting to install Virtualbox"
 
-    open "http://download.virtualbox.org/virtualbox/5.0.38/VirtualBox-5.0.38-114633-OSX.dmg"
+    open "http://download.virtualbox.org/virtualbox/5.1.28/VirtualBox-5.1.28-117968-OSX.dmg"
 
     clr_green "Press any key to continue once its installed"
 
@@ -291,7 +291,7 @@ do
     clr_bold clr_red "Vagrant is not installed!!"
     clr_bold clr_red "Attempting to install Vagrant"
 
-    open "https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1.dmg"
+    open "https://releases.hashicorp.com/vagrant/2.0.0/vagrant_2.0.0_x86_64.dmg"
 
     clr_green "Press any key to continue once its installed"
 
