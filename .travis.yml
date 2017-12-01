@@ -1,3 +1,3 @@
 os: osx
 
-script: cd $(TRAVIS_BUILD_DIR) && init.sh
+script: ls -l && sh init.sh
