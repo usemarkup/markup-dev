@@ -211,6 +211,23 @@ done
 
 clr_green "Git Installed"
 
+clr_magenta "> Checking iTerm2"
+
+test -d /Applications/iTerm.app
+
+while [ $? -eq 1 ]
+do
+    clr_bold clr_red "Installing iterm2"
+
+    curl -o iterm.zip "https://iterm2.com/downloads/stable/iTerm2-3_1_5.zip"
+    unzip iterm.zip
+    sudo mv iTerm.app /Application/.
+
+    which git | grep "/usr/local/bin" > /dev/null
+done
+
+clr_green "iTerm2 Installed"
+
 clr_magenta "> Checking for PHP 7.1"
 
 php -v | grep "7\.1\." > /dev/null
@@ -254,7 +271,7 @@ do
     clr_bold clr_red "Bundler is not installed!!"
     clr_bold clr_red "Attempting to install Bundler"
 
-    gem install bundler
+    sudo gem install bundler
     which bundler > /dev/null
 done
 
