@@ -245,6 +245,24 @@ done
 
 clr_green "PHP Installed"
 
+#### Composer
+
+clr_magenta "> Checking for composer (from Brew)."
+
+which composer
+
+while [ $? -eq 1 ]
+do
+    clr_bold clr_red "Composer from Brew is not installed!!"
+    clr_bold clr_red "Attempting to install composer from Brew"
+
+    brew install composer
+    which composer
+done
+
+clr_green "Composer Installed"
+
+
 #### Ruby
 clr_magenta "> Checking for Ruby >= 2.3.0"
 
