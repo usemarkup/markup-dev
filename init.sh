@@ -239,6 +239,8 @@ do
 
     brew install homebrew/php/php71 homebrew/php/php71-intl homebrew/php/php71-mcrypt
     brew link homebrew/php/php71
+    
+    echo "memory_limit = -1" > /usr/local/etc/php/7.1/conf.d/zzzz-memory_limit.ini
 
     php -v | grep "7\.1\." > /dev/null
 done
