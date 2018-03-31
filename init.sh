@@ -237,8 +237,7 @@ do
     clr_bold clr_red "PHP 7.1 not found"
     clr_bold clr_red "Attempting to install PHP 7.1"
 
-    brew install homebrew/php/php71
-    brew link homebrew/php/php71
+    brew install php@7.1
     
     echo "memory_limit = -1" > /usr/local/etc/php/7.1/conf.d/zzzz-memory_limit.ini
 
