@@ -3,7 +3,7 @@ Installer for the Markup Laptops (mostly aimed at running VMs)
 ### Installs
 
 - Brew (for Ruby/PHP etc)
-- Ruby >= 2.3
+- Ruby >= 2.4
 - PHP 7.1
 - Bundler (To install gems)
 - Virtualbox (to run virtual machines)
