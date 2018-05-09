@@ -239,6 +239,9 @@ do
 
     brew install php@7.1
     
+    echo 'export export PATH="/usr/local/opt/php@7.1/bin:$PATH"' >> ~/.bash_profile
+    echo 'export export PATH="/usr/local/opt/php@7.1/sbin:$PATH"' >> ~/.bash_profile
+    
     echo "memory_limit = -1" > /usr/local/etc/php/7.1/conf.d/zzzz-memory_limit.ini
 
     php -v | grep "7\.1\." > /dev/null
