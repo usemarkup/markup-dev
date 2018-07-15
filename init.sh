@@ -310,7 +310,7 @@ do
     clr_bold clr_red "Virtualbox is not installed!!"
     clr_bold clr_red "Attempting to install Virtualbox"
 
-    brew install virtualbox 
+    brew install homebrew/cask/virtualbox 
     
     clr_green "Press any key to continue once its installed"
 
@@ -330,7 +330,7 @@ do
     clr_bold clr_red "Vagrant is not installed!!"
     clr_bold clr_red "Attempting to install Vagrant"
 
-    brew install vagrant 
+    brew install homebrew/cask/vagrant 
     
     clr_green "Press any key to continue once its installed"
 
