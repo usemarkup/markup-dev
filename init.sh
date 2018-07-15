@@ -310,7 +310,7 @@ do
     clr_bold clr_red "Virtualbox is not installed!!"
     clr_bold clr_red "Attempting to install Virtualbox"
 
-    brew install homebrew/cask/virtualbox 
+    open "http://download.virtualbox.org/virtualbox/5.1.28/VirtualBox-5.1.28-117968-OSX.dmg"
     
     clr_green "Press any key to continue once its installed"
 
@@ -330,7 +330,7 @@ do
     clr_bold clr_red "Vagrant is not installed!!"
     clr_bold clr_red "Attempting to install Vagrant"
 
-    brew install homebrew/cask/vagrant 
+    open "https://releases.hashicorp.com/vagrant/2.0.0/vagrant_2.0.0_x86_64.dmg"
     
     clr_green "Press any key to continue once its installed"
 
