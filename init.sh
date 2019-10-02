@@ -196,6 +196,8 @@ done
 
 clr_green "Brew Installed"
 
+brew update
+
 clr_magenta "> Running Brewfile (PLEASE WAIT)"
 
 rm -rf /tmp/brewfile
@@ -268,7 +270,7 @@ clr_green "PHP Installed"
 
 clr_magenta "> Checking for composer (from Brew)."
 
-which composer
+which composer > /dev/null
 
 while [ $? -eq 1 ]
 do
