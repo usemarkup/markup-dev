@@ -196,6 +196,35 @@ done
 
 clr_green "Brew Installed"
 
+clr_magenta "> Running Brewfile (PLEASE WAIT)"
+
+rm -rf /tmp/brewfile
+cat >> /tmp/brewfile <<EOL
+# Taps
+tap "homebrew/core"
+tap "homebrew/bundle"
+tap "caskroom/cask"
+tap "homebrew/cask-drivers"
+tap "homebrew/cask-versions"
+
+brew "openssl"
+brew "ruby"
+brew "git"
+brew "curl"
+brew "wget"
+brew "php@7.1"
+brew "composer"
+
+cask "sequel-pro-nightly"
+cask "vagrant"
+cask "the-unarchiver"
+cask "iterm2"
+cask "virtualbox"
+EOL
+
+cd /tmp/
+brew bundle
+
 clr_magenta "> Checking for git (from Brew)."
 
 which git | grep "/usr/local/bin" > /dev/null
@@ -203,10 +232,8 @@ which git | grep "/usr/local/bin" > /dev/null
 while [ $? -eq 1 ]
 do
     clr_bold clr_red "Git from Brew is not installed!!"
-    clr_bold clr_red "Attempting to install Git from Brew"
 
-    brew install git
-    which git | grep "/usr/local/bin" > /dev/null
+    exit 1
 done
 
 clr_green "Git Installed"
@@ -219,11 +246,7 @@ while [ $? -eq 1 ]
 do
     clr_bold clr_red "Installing iterm2"
 
-    curl -o iterm.zip "https://iterm2.com/downloads/stable/iTerm2-3_1_5.zip"
-    unzip iterm.zip
-    sudo mv iTerm.app /Application/.
-
-    which git | grep "/usr/local/bin" > /dev/null
+    exit 1
 done
 
 clr_green "iTerm2 Installed"
@@ -235,16 +258,8 @@ php -v | grep "7\.1\." > /dev/null
 while [ $? -eq 1 ]
 do
     clr_bold clr_red "PHP 7.1 not found"
-    clr_bold clr_red "Attempting to install PHP 7.1"
 
-    brew install php@7.1
-    
-    echo 'export export PATH="/usr/local/opt/php@7.1/bin:$PATH"' >> ~/.bash_profile
-    echo 'export export PATH="/usr/local/opt/php@7.1/sbin:$PATH"' >> ~/.bash_profile
-    
-    echo "memory_limit = -1" > /usr/local/etc/php/7.1/conf.d/zzzz-memory_limit.ini
-
-    php -v | grep "7\.1\." > /dev/null
+    exit 1
 done
 
 clr_green "PHP Installed"
@@ -258,10 +273,8 @@ which composer
 while [ $? -eq 1 ]
 do
     clr_bold clr_red "Composer from Brew is not installed!!"
-    clr_bold clr_red "Attempting to install composer from Brew"
 
-    brew install composer
-    which composer
+    exit 1
 done
 
 clr_green "Composer Installed"
@@ -275,10 +288,8 @@ ruby -v | grep -v "2\.[0-4]" > /dev/null
 while [ $? -eq 1 ]
 do
     clr_bold clr_red "Ruby >= 2.5 is not installed!!"
-    clr_bold clr_red "Attempting to install Ruby >=2.5 from Brew"
 
-    brew install ruby
-    ruby -v | grep -v "2\.[0-4]" > /dev/null
+    exit 1
 done
 
 clr_green "Ruby >= 2.5 Installed"
@@ -308,35 +319,9 @@ which VBoxManage > /dev/null
 while [ $? -eq 1 ]
 do
     clr_bold clr_red "Virtualbox is not installed!!"
-    clr_bold clr_red "Attempting to install Virtualbox"
 
-    open "http://download.virtualbox.org/virtualbox/5.1.28/VirtualBox-5.1.28-117968-OSX.dmg"
-    
-    clr_green "Press any key to continue once its installed"
-
-    read -p "<>" -n1 -s < /dev/tty
-    which VBoxManage > /dev/null
+    exit 1
 done
 
 clr_green "Virtualbox Installed"
-
-#### Vagrant
-clr_magenta "> Checking for Vagrant."
-
-which vagrant > /dev/null
-
-while [ $? -eq 1 ]
-do
-    clr_bold clr_red "Vagrant is not installed!!"
-    clr_bold clr_red "Attempting to install Vagrant"
-
-    open "https://releases.hashicorp.com/vagrant/2.0.0/vagrant_2.0.0_x86_64.dmg"
-    
-    clr_green "Press any key to continue once its installed"
-
-    read -p "<>" -n1 -s < /dev/tty
-    which vagrant > /dev/null
-done
-
-clr_green "vagrant Installed"
 
