@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#test
 ######################################
 # Bash colours library
 # https://github.com/maxtsepkov/bash_colors/blob/master/bash_colors.sh
