@@ -269,7 +269,7 @@ then
     #Check if the PATH contains the new PHP section already. If not, remove it
     if [ $SHELL = "/bin/zsh" ] 
     then
-        grep "php@7.1" ./zshrc
+        grep "php@7.1" ~/.zshrc
         if [ $? -ne 1 ]
         then
             clr_cyan "Set up environment variables for ZSH"
@@ -277,7 +277,7 @@ then
         fi
     elif [ $SHELL = "/bin/bash" ] 
     then
-        grep "php@7.1" ./zshrc
+        grep "php@7.1" ~/.bashrc
         if [ $? -ne 1 ]
         then
             clr_cyan "Set up environment variables for Bash"
