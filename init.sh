@@ -225,7 +225,6 @@ cask "sequel-pro-nightly"
 cask "vagrant"
 cask "the-unarchiver"
 cask "iterm2"
-cask "virtualbox"
 EOL
 
 cd /tmp/
@@ -350,14 +349,23 @@ clr_green "Bundler Installed"
 #### Virtualbox
 clr_magenta "> Checking for Virtualbox."
 
-which VBoxManage > /dev/null
-
-while [ $? -eq 1 ]
-do
-    clr_bold clr_red "Virtualbox is not installed!!"
-
+which vboxmanage > /dev/null
+if [ $? -eq 1 ] 
+then
+    #Virtualbox 6.1 is not supported by Vagrant at this time and 6.0 is not available on brew at this time, hence it must be installed manually
+    clr_bold clr_green "Virtualbox is not installed!!"
+    clr_bold clr_green "Please install virtualbox 6.0 using the following URL"
+    clr_bold clr_green "https://www.virtualbox.org/wiki/Download_Old_Builds_6_0"
     exit 1
-done
+else
+    VBoxManage --version | grep "^6.0." > /dev/null
+    if [ $? -eq 1 ] 
+    then
+        clr_bold clr_green "Virtualbox is installed but is not at version 6.0. Please uninstall it and replace it with 6.0 from the Virtualbox site"    
+        clr_bold clr_green "https://www.virtualbox.org/wiki/Download_Old_Builds_6_0"
+        exit 1
+    fi
+fi
 
-clr_green "Virtualbox Installed"
+clr_green "Virtualbox is installed and is the correct version"
 
