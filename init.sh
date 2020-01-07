@@ -205,9 +205,13 @@ cat >> /tmp/brewfile <<EOL
 # Taps
 tap "homebrew/core"
 tap "homebrew/bundle"
-tap "caskroom/cask"
+tap "homebrew/cask"
 tap "homebrew/cask-drivers"
 tap "homebrew/cask-versions"
+tap "exolnet/homebrew-deprecated"
+
+#Environment setup
+cask_args appdir: "/Applications"
 
 brew "openssl"
 brew "ruby"
@@ -225,10 +229,11 @@ cask "virtualbox"
 EOL
 
 cd /tmp/
-brew bundle
+brew bundle -v
 
 clr_magenta "> Checking for git (from Brew)."
 
+# Git
 which git | grep "/usr/local/bin" > /dev/null
 
 while [ $? -eq 1 ]
@@ -253,9 +258,38 @@ done
 
 clr_green "iTerm2 Installed"
 
+### PHP
+
 clr_magenta "> Checking for PHP 7.1"
 
 php -v | grep "7\.1\." > /dev/null
+if [ $? -ne 1 ]
+then
+    export PATH="/usr/local/opt/php@7.1/bin:$PATH"
+
+    #Check if the PATH contains the new PHP section already. If not, remove it
+    if [ $SHELL = "/bin/zsh" ] 
+    then
+        grep "php@7.1" ./zshrc
+        if [ $? -ne 1 ]
+        then
+            clr_cyan "Set up environment variables for ZSH"
+            echo 'export PATH="/usr/local/opt/php@7.1/bin:$PATH"' >> ~/.zshrc
+        fi
+    elif [ $SHELL = "/bin/bash" ] 
+    then
+        grep "php@7.1" ./zshrc
+        if [ $? -ne 1 ]
+        then
+            clr_cyan "Set up environment variables for Bash"
+            echo 'export PATH="/usr/local/opt/php@7.1/bin:$PATH"' >> ~/.bashrc
+        fi
+    else
+        echo "Your shell is not supported! In order to successfully use PHP7.1 you will need to set your path variable to export the new location for PHP7.1 as below:"
+        echo "/usr/local/opt/php@7.1/bin"
+    fi
+fi
+
 
 while [ $? -eq 1 ]
 do
