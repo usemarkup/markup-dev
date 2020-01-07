@@ -274,7 +274,7 @@ then
         if [ $? -ne 1 ]
         then
             clr_cyan "Set up environment variables for ZSH"
-            echo 'export PATH="/usr/local/opt/php@7.1/bin:$PATH"' >> ./zshrc
+            echo 'export PATH="/usr/local/opt/php@7.1/bin:$PATH"' >> ~/.zshrc
         fi
     elif [ $SHELL = "/bin/bash" ] 
     then
@@ -282,7 +282,7 @@ then
         if [ $? -ne 1 ]
         then
             clr_cyan "Set up environment variables for Bash"
-            echo 'export PATH="/usr/local/opt/php@7.1/bin:$PATH"' >> ./bashrc
+            echo 'export PATH="/usr/local/opt/php@7.1/bin:$PATH"' >> ~/.bashrc
         fi
     else
         echo "Your shell is not supported! In order to successfully use PHP7.1 you will need to set your path variable to export the new location for PHP7.1 as below:"
