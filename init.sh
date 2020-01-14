@@ -178,6 +178,7 @@ function clr_dump
 '
 }
 
+
 ######################################
 # Requirements Check!
 ######################################
@@ -284,11 +285,30 @@ then
             echo 'export PATH="/usr/local/opt/php@7.1/bin:$PATH"' >> ~/.bashrc
         fi
     else
-        echo "Your shell is not supported! In order to successfully use PHP7.1 you will need to set your path variable to export the new location for PHP7.1 as below:"
+        echo "Your shell is not supported! In order to successfully use PHP7.1 you will need to set your path variable to export the new location for it, as below:"
         echo "/usr/local/opt/php@7.1/bin"
     fi
 fi
 
+echo $PATH | grep "/usr/local/opt/ruby/bin/:"
+if [ $? -ne 0 ]; then
+  echo "Missing ruby path variable"
+  export PATH="/usr/local/opt/ruby/bin:$PATH"
+  if [ $SHELL = "/bin/zsh" ]; then
+    grep "/usr/local/opt/ruby/bin" ~/.zshrc
+    if [ $? -ne 0 ]; then
+      echo 'export PATH="/usr/local/opt/ruby/bin:$PATH"' >> ~/.zshrc
+    fi
+  elif [ $SHELL = "/bin/bash" ]; then
+    grep "/usr/local/opt/ruby/bin" ~/.zshrc
+    if [ $? -ne 0]; then
+      echo 'export PATH="/usr/local/opt/ruby/bin:$PATH"' >> ~/.bashrc
+    fi
+  else
+    echo "Your shell is not supported! In order to successfully use Ruby you will need to set your path variable to export the new location for it, as below:"
+    echo "/usr/local/opt/ruby/bin"
+  fi
+fi
 
 while [ $? -eq 1 ]
 do
