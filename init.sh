@@ -290,26 +290,6 @@ then
     fi
 fi
 
-echo $PATH | grep "/usr/local/opt/ruby/bin/:"
-if [ $? -ne 0 ]; then
-  echo "Missing ruby path variable"
-  export PATH="/usr/local/opt/ruby/bin:$PATH"
-  if [ $SHELL = "/bin/zsh" ]; then
-    grep "/usr/local/opt/ruby/bin" ~/.zshrc
-    if [ $? -ne 0 ]; then
-      echo 'export PATH="/usr/local/opt/ruby/bin:$PATH"' >> ~/.zshrc
-    fi
-  elif [ $SHELL = "/bin/bash" ]; then
-    grep "/usr/local/opt/ruby/bin" ~/.zshrc
-    if [ $? -ne 0]; then
-      echo 'export PATH="/usr/local/opt/ruby/bin:$PATH"' >> ~/.bashrc
-    fi
-  else
-    echo "Your shell is not supported! In order to successfully use Ruby you will need to set your path variable to export the new location for it, as below:"
-    echo "/usr/local/opt/ruby/bin"
-  fi
-fi
-
 while [ $? -eq 1 ]
 do
     clr_bold clr_red "PHP 7.1 not found"
@@ -339,13 +319,31 @@ clr_green "Composer Installed"
 clr_magenta "> Checking for Ruby >= 2.5.0"
 
 ruby -v | grep -v "2\.[0-4]" > /dev/null
-
-while [ $? -eq 1 ]
-do
+if [ $? -eq 1 ]; then
     clr_bold clr_red "Ruby >= 2.5 is not installed!!"
 
     exit 1
-done
+else
+  echo $PATH | grep "/usr/local/opt/ruby/bin/:"
+  if [ $? -ne 0 ]; then
+    echo "Missing ruby path variable"
+    export PATH="/usr/local/opt/ruby/bin:$PATH"
+    if [ $SHELL = "/bin/zsh" ]; then
+      grep "/usr/local/opt/ruby/bin" ~/.zshrc
+      if [ $? -ne 0 ]; then
+        echo 'export PATH="/usr/local/opt/ruby/bin:$PATH"' >> ~/.zshrc
+      fi
+    elif [ $SHELL = "/bin/bash" ]; then
+      grep "/usr/local/opt/ruby/bin" ~/.zshrc
+      if [ $? -ne 0]; then
+        echo 'export PATH="/usr/local/opt/ruby/bin:$PATH"' >> ~/.bashrc
+      fi
+    else
+      echo "Your shell is not supported! In order to successfully use Ruby you will need to set your path variable to export the new location for it, as below:"
+      echo "/usr/local/opt/ruby/bin"
+    fi
+  fi
+fi
 
 clr_green "Ruby >= 2.5 Installed"
 
