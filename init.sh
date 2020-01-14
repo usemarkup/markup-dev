@@ -318,15 +318,18 @@ clr_green "Composer Installed"
 #### Ruby
 clr_magenta "> Checking for Ruby >= 2.5.0"
 
-ruby -v | grep -v "2\.[0-4]" > /dev/null
-if [ $? -eq 1 ]; then
-    clr_bold clr_red "Ruby >= 2.5 is not installed!!"
-
-    exit 1
-else
-  echo $PATH | grep "/usr/local/opt/ruby/bin/:"
+rubyPath=`which ruby`
+if [ $? -eq 0 ]; then
+  ruby -v | grep -v "2\.[0-4]" > /dev/null
   if [ $? -ne 0 ]; then
-    echo "Missing ruby path variable"
+    echo "Ruby >= 2.5 is not installed"
+    exit 1
+  fi
+
+  if [ $rubyPath = "/usr/local/opt/ruby/bin/ruby" ]; then
+    echo "Ruby is installed and PATH is set as expected"
+  elif
+    echo "Ruby is installed but in an unexpected location. Pathing to brew install"
     export PATH="/usr/local/opt/ruby/bin:$PATH"
     if [ $SHELL = "/bin/zsh" ]; then
       grep "/usr/local/opt/ruby/bin" ~/.zshrc
@@ -343,6 +346,9 @@ else
       echo "/usr/local/opt/ruby/bin"
     fi
   fi
+else
+  clr_bold clr_red "Ruby >= 2.5 is not installed!!"
+  exit 1
 fi
 
 clr_green "Ruby >= 2.5 Installed"
