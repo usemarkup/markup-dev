@@ -187,7 +187,7 @@ export PATH="/usr/local/bin/:$PATH"
 
 clr_magenta "> Checking for Brew."
 
-while [ ! -d "/usr/local/bin/" ]
+while [ ! -f "/usr/local/bin/brew" ]
 do
     clr_bold clr_red "Brew is not installed!!"
     clr_bold clr_red "Attempting to install Brew"
