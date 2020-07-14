@@ -328,7 +328,7 @@ if [ $? -eq 0 ]; then
 
   if [ $rubyPath = "/usr/local/opt/ruby/bin/ruby" ]; then
     echo "Ruby is installed and PATH is set as expected"
-  elif
+  else
     echo "Ruby is installed but in an unexpected location. Pathing to brew install"
     export PATH="/usr/local/opt/ruby/bin:$PATH"
     if [ $SHELL = "/bin/zsh" ]; then
